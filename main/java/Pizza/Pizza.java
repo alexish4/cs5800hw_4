@@ -10,7 +10,6 @@ public class Pizza {
             "Tomato and Basil", "Beef", "Ham", "Pesto",
             "Spicy Pork", "Ham and Pineapple"
     );
-    //Have both constructors?
 
     private List<String> selectedToppings = new ArrayList<>();
     private String size;
@@ -20,6 +19,10 @@ public class Pizza {
         this.selectedToppings = selectedToppings;
         this.size = size;
         this.pizzaChain = pizzaChain;
+    }
+
+    public Pizza() {
+        this.size = "Medium";
     }
 
     public List<String> getSelectedToppings() {
@@ -52,17 +55,26 @@ public class Pizza {
         }
     }
 
-    public void eat() {
-        System.out.println("Pizza.Pizza is from: " + pizzaChain);
-        System.out.println("Size is " + size);
-        System.out.print("Selected toppings: ");
-        for (int i = 0; i < selectedToppings.size(); i++) {
-            System.out.print(selectedToppings.get(i));
-            if (i != selectedToppings.size() - 1) {
-                System.out.print(", ");
+    //Structuring with string builder for testing
+    public String eat() {
+        StringBuilder result = new StringBuilder();
+        result.append("Pizza is from: ").append(pizzaChain).append("\n");
+        result.append("Size is ").append(size).append("\n");
+        result.append("Selected toppings: ");
+
+        if (selectedToppings.isEmpty()) {
+            result.append("None");
+        } else {
+            for (int i = 0; i < selectedToppings.size(); i++) {
+                result.append(selectedToppings.get(i));
+                if (i != selectedToppings.size() - 1) {
+                    result.append(", ");
+                }
             }
         }
-        System.out.println("\n");
+        result.append("\n");
+        System.out.println(result.toString());
+        return result.toString();
     }
 
 }
